@@ -104,14 +104,16 @@
     .btn-appstore {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 14px 28px;
-      background: var(--text);
-      color: var(--bg);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 14px;
       text-decoration: none;
       font-size: 15px; font-weight: 600;
-      transition: transform .15s, opacity .15s;
+      cursor: default;
+      pointer-events: none;
+      opacity: 0.75;
     }
-    .btn-appstore:hover { transform: translateY(-2px); opacity: .92; }
     .btn-appstore svg { width: 22px; height: 22px; }
 
     /* DEVICE MOCKUP */
@@ -268,14 +270,14 @@
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-badge">Available on the App Store</span>
+  <span class="hero-badge">Coming soon to the App Store</span>
   <h1>Fluid in<br>your hands</h1>
   <p class="hero-sub">Ondelu simulates the mesmerizing physics of rheoscopic fluid — a shimmer that responds to your every touch and tilt.</p>
   <div class="cta-group">
-    <a href="https://apps.apple.com/app/ondelu/id6748234567" class="btn-appstore">
+    <span class="btn-appstore">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Download on the App Store
-    </a>
+      Coming soon
+    </span>
   </div>
 
   <div class="phone-wrap">
@@ -368,12 +370,12 @@
 
 <!-- CTA SECTION -->
 <section class="section" style="text-align:center; padding-top:80px; padding-bottom:80px">
-  <h2 class="section-title" style="margin:0 auto 20px">Try it.</h2>
-  <p class="section-body" style="margin:0 auto 40px">Free to download. Graphite palette included. Ondelu Plus unlocks seven more colours.</p>
-  <a href="https://apps.apple.com/app/ondelu/id6748234567" class="btn-appstore" style="margin:0 auto">
+  <h2 class="section-title" style="margin:0 auto 20px">Coming soon.</h2>
+  <p class="section-body" style="margin:0 auto 40px">Graphite palette free. Ondelu Plus unlocks seven more colours.</p>
+  <span class="btn-appstore" style="margin:0 auto">
     <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-    Download on the App Store
-  </a>
+    Coming soon to the App Store
+  </span>
 </section>
 
 <footer>
