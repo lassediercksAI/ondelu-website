@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support – Ondelu</title>
+  <meta name="description" content="Get help with Ondelu.">
+  <link rel="icon" type="image/png" href="icon.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #07080a; --bg2: #0d0f12; --border: rgba(255,255,255,0.07);
+      --text: #e8eaf0; --muted: #8a8fa0; --accent: #4ab8e0; --accent2: #a070d8;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 17px; line-height: 1.7;
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 32px; border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 20px; font-weight: 700; letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 80px 24px; }
+    h1 { font-size: 40px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 32px; }
+    h2 { font-size: 22px; font-weight: 700; margin-top: 48px; margin-bottom: 16px; }
+    p { color: var(--muted); margin-bottom: 16px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .faq { margin-top: 16px; }
+    .faq-item {
+      border: 1px solid var(--border); border-radius: 14px;
+      margin-bottom: 10px; overflow: hidden;
+    }
+    .faq-q {
+      padding: 18px 22px; font-weight: 600; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: background .15s;
+    }
+    .faq-q:hover { background: rgba(255,255,255,0.03); }
+    .faq-a { padding: 0 22px 18px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .contact-box {
+      margin-top: 48px; padding: 36px;
+      background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 20px;
+    }
+    .contact-box h2 { margin-top: 0; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 12px;
+      background: rgba(74,184,224,0.1); border: 1px solid rgba(74,184,224,0.25);
+      color: var(--accent); font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: background .2s;
+      margin-top: 16px;
+    }
+    .btn:hover { background: rgba(74,184,224,0.18); text-decoration: none; }
+    footer {
+      border-top: 1px solid var(--border); padding: 32px;
+      max-width: 1100px; margin: 0 auto;
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    footer a { color: var(--muted); text-decoration: none; font-size: 14px; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Ondelu</a>
+</nav>
+
+<main>
+  <h1>Support</h1>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+
+    <div class="faq-item">
+      <div class="faq-q">What is Ondelu?</div>
+      <div class="faq-a">Ondelu is a rheoscopic fluid simulator for iPhone. It recreates the physics of a shimmering liquid that responds to touch and the motion of your device — similar to a snow globe, but made of light.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Which devices are supported?</div>
+      <div class="faq-a">Ondelu requires iOS 17 or later and an iPhone with a Metal-capable GPU (all iPhones from iPhone 6 onwards qualify). For the highest resolution simulation grid, an A14 chip or newer is recommended (iPhone 12 and later).</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I use it?</div>
+      <div class="faq-a">Open the app and start touching the screen — drag to stir, tap quickly for a ripple. Tilt your phone to watch gravity pull the pigments. Lay it flat and the fluid eventually settles on its own. Tap the settings icon (top right) to switch colour palettes.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What is Ondelu Plus?</div>
+      <div class="faq-a">Ondelu Plus is a one-time in-app purchase that unlocks nine additional colour palettes: Pearl, Copper, Lagoon, Gold, Rose, Ink, Slick, Opal, and Holo. There is no subscription — you pay once and own it forever.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">I purchased Plus on another device. How do I restore it?</div>
+      <div class="faq-a">In the settings sheet, tap "Restore Purchases". Make sure you're signed into the same Apple ID you used for the original purchase.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">The fluid seems to stop reacting to touch. What's happening?</div>
+      <div class="faq-a">When the phone is completely still on a flat surface for a while, the simulation energy fades out. The moment you pick it up or touch the screen the fluid wakes up again — this is intentional behaviour. It mirrors how real rheoscopic fluid settles when undisturbed.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Does Ondelu use the internet or collect any data?</div>
+      <div class="faq-a">No. Ondelu is entirely local. It does not connect to the internet, send analytics, or require an account. See our <a href="/privacy">Privacy Policy</a> for full details.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Will there be an iPad or Android version?</div>
+      <div class="faq-a">Not at this time. Ondelu is built for iPhone and designed around the handheld experience of tilting and touching the device.</div>
+    </div>
+
+  </div>
+
+  <div class="contact-box">
+    <h2>Still need help?</h2>
+    <p>Can't find what you're looking for? Send us an email and we'll get back to you within two business days.</p>
+    <a href="mailto:legalexap.product172@passmail.net?subject=Ondelu%20Support" class="btn">
+      Send a message
+    </a>
+  </div>
+</main>
+
+<footer>
+  <a href="/">Home</a>
+  <a href="/privacy">Privacy Policy</a>
+  <a href="/legal">Legal Notice</a>
+</footer>
+
+</body>
+</html>
