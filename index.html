@@ -4,27 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ondelu – Fluid in your hands</title>
-  <meta name="description" content="Ondelu is a mesmerizing rheoscopic fluid simulator for iPhone. Touch it, tilt it, watch it flow.">
+  <meta name="description" content="Ondelu is a rheoscopic fluid simulation for iPhone. Stir it, tilt it, watch the flakes catch the light — then let it settle into stillness.">
   <meta property="og:title" content="Ondelu – Fluid in your hands">
-  <meta property="og:description" content="A mesmerizing rheoscopic fluid simulator for iPhone. Touch it, tilt it, watch it flow.">
+  <meta property="og:description" content="A living rheoscopic fluid for iPhone. Stir it, tilt it, watch it settle.">
   <meta property="og:image" content="https://ondelu.com/og.png">
   <meta property="og:url" content="https://ondelu.com">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#05060f">
   <link rel="icon" type="image/png" href="icon.png">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #07080a;
-      --bg2: #0d0f12;
-      --border: rgba(255,255,255,0.07);
-      --text: #e8eaf0;
-      --muted: #8a8fa0;
-      --accent: #4ab8e0;
-      --accent2: #a070d8;
+      --bg: #05060f;
+      --bg2: #0b0c1a;
+      --border: rgba(190,175,255,0.10);
+      --text: #f2ecff;
+      --muted: #a29dc8;
+      --cyan: #35d0f2;
+      --violet: #7a34f0;
+      --magenta: #f032b4;
+      --ember: #ff9a45;
+      --glow: linear-gradient(100deg, var(--cyan), var(--violet) 40%, var(--magenta) 70%, var(--ember));
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
 
     body {
       background: var(--bg);
@@ -32,206 +36,176 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
       font-size: 17px;
       line-height: 1.6;
-      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
     }
+
+    a { color: inherit; }
 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 32px;
-      background: rgba(7,8,10,0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(5,6,15,0.78);
+      backdrop-filter: blur(14px) saturate(1.3);
+      -webkit-backdrop-filter: blur(14px) saturate(1.3);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
       font-size: 20px; font-weight: 700; letter-spacing: -0.5px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background: var(--glow);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
       text-decoration: none;
     }
     .nav-links { display: flex; gap: 24px; }
-    .nav-links a {
-      color: var(--muted); text-decoration: none; font-size: 15px;
-      transition: color .2s;
-    }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 15px; transition: color .2s; }
     .nav-links a:hover { color: var(--text); }
 
     /* HERO */
     .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center;
+      max-width: 1100px; margin: 0 auto;
       padding: 120px 24px 80px;
       position: relative;
-      overflow: hidden;
     }
     .hero::before {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute; inset: -10% -30%;
       background:
-        radial-gradient(ellipse 60% 50% at 30% 40%, rgba(74,184,224,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 50% at 70% 60%, rgba(160,112,216,0.10) 0%, transparent 70%);
-      pointer-events: none;
+        radial-gradient(45% 40% at 70% 45%, rgba(240,50,180,0.16), transparent 70%),
+        radial-gradient(40% 40% at 25% 65%, rgba(53,208,242,0.12), transparent 70%),
+        radial-gradient(35% 35% at 85% 80%, rgba(255,154,69,0.08), transparent 70%);
+      pointer-events: none; z-index: -1;
     }
     .hero-badge {
       display: inline-block;
       padding: 6px 14px;
       border-radius: 100px;
-      background: rgba(74,184,224,0.1);
-      border: 1px solid rgba(74,184,224,0.25);
-      color: var(--accent);
+      background: rgba(122,52,240,0.12);
+      border: 1px solid rgba(122,52,240,0.35);
+      color: #c9b2ff;
       font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
       margin-bottom: 28px;
     }
     h1 {
-      font-size: clamp(52px, 8vw, 96px);
-      font-weight: 800;
-      letter-spacing: -3px;
-      line-height: 1.0;
+      font-size: clamp(52px, 7.5vw, 92px);
+      font-weight: 800; letter-spacing: -3px; line-height: 1.0;
       margin-bottom: 24px;
-      background: linear-gradient(160deg, #ffffff 30%, rgba(255,255,255,0.5));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    h1 .glow {
+      background: var(--glow);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
     .hero-sub {
-      font-size: clamp(18px, 2.5vw, 22px);
+      font-size: clamp(18px, 2.2vw, 21px);
       color: var(--muted);
-      max-width: 520px;
-      margin: 0 auto 48px;
-      line-height: 1.5;
+      max-width: 500px;
+      margin-bottom: 40px;
+      line-height: 1.55;
     }
-    .cta-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .btn-appstore {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 28px;
-      background: rgba(255,255,255,0.08);
+      padding: 14px 26px;
+      background: rgba(255,255,255,0.07);
       color: var(--text);
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.16);
       border-radius: 14px;
       text-decoration: none;
       font-size: 15px; font-weight: 600;
-      cursor: default;
-      pointer-events: none;
-      opacity: 0.75;
     }
     .btn-appstore svg { width: 22px; height: 22px; }
+    .hero-note { color: var(--muted); font-size: 14px; margin-top: 16px; }
 
-    /* DEVICE MOCKUP */
-    .phone-wrap {
-      margin: 64px auto 0;
+    /* PHONE */
+    .phone {
       position: relative;
-      width: min(320px, 80vw);
+      width: min(300px, 72vw);
+      justify-self: center;
     }
-    .phone-wrap::before {
+    .phone::before {
       content: '';
-      position: absolute;
-      inset: -40px;
-      background: radial-gradient(ellipse at center, rgba(74,184,224,0.15) 0%, transparent 70%);
-      border-radius: 50%;
+      position: absolute; inset: -60px;
+      background: radial-gradient(closest-side, rgba(240,50,180,0.25), rgba(122,52,240,0.12) 55%, transparent);
+      filter: blur(10px);
       pointer-events: none;
     }
     .phone-frame {
-      width: 100%;
-      border-radius: 44px;
-      border: 1.5px solid rgba(255,255,255,0.12);
-      overflow: hidden;
-      aspect-ratio: 9/19.5;
-      background: #0d0f14;
-      box-shadow:
-        0 0 0 1px rgba(0,0,0,0.8),
-        0 40px 80px rgba(0,0,0,0.6),
-        0 0 40px rgba(74,184,224,0.1);
-      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      border-radius: 46px;
+      padding: 9px;
+      background: linear-gradient(160deg, #2a2a35, #0d0d14 40%, #1d1d28);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 40px 90px rgba(0,0,0,0.7);
     }
-    .phone-screen {
-      width: 100%; height: 100%;
-      background: #050507;
-      position: relative; overflow: hidden;
-    }
-    .phone-screen img,
-    .phone-screen video {
-      width: 100%; height: 100%;
+    .phone-frame video, .phone-frame img {
+      display: block; width: 100%;
+      aspect-ratio: 600 / 1304;
       object-fit: cover;
-      display: block;
+      border-radius: 38px;
+      background: #05060f;
     }
 
-    /* FEATURES */
-    .section {
-      max-width: 1100px; margin: 0 auto; padding: 100px 24px;
-    }
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 110px 24px; }
     .section-label {
-      color: var(--accent); font-size: 13px; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase;
-      margin-bottom: 16px;
+      color: var(--cyan); font-size: 13px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
     }
     .section-title {
       font-size: clamp(32px, 4vw, 52px);
       font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;
       margin-bottom: 20px;
     }
-    .section-body {
-      color: var(--muted); font-size: 18px; max-width: 560px;
-      line-height: 1.7; margin-bottom: 56px;
-    }
+    .section-body { color: var(--muted); font-size: 18px; max-width: 580px; line-height: 1.7; margin-bottom: 56px; }
 
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2px;
-      border-radius: 20px;
-      overflow: hidden;
+      border-radius: 20px; overflow: hidden;
       border: 1px solid var(--border);
     }
-    .feature-card {
-      padding: 36px;
-      background: var(--bg2);
-      transition: background .2s;
-    }
-    .feature-card:hover { background: #12151a; }
-    .feature-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: rgba(74,184,224,0.1);
-      border: 1px solid rgba(74,184,224,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin-bottom: 20px;
-    }
-    .feature-card h3 {
-      font-size: 17px; font-weight: 700; margin-bottom: 8px;
+    .feature-card { padding: 34px; background: var(--bg2); }
+    .feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .feature-card h3::before {
+      content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--glow); margin-right: 10px; vertical-align: middle;
     }
     .feature-card p { color: var(--muted); font-size: 15px; line-height: 1.6; }
 
-    /* PLUS */
-    .plus-section {
-      background: linear-gradient(160deg,
-        rgba(160,112,216,0.06) 0%,
-        rgba(74,184,224,0.04) 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+    /* PALETTES */
+    .plus { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(122,52,240,0.05), rgba(5,6,15,0) 60%); }
+    .palettes {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
     }
-    .plus-inner {
-      max-width: 1100px; margin: 0 auto; padding: 100px 24px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    @media (max-width: 820px) { .palettes { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; } }
+    .palette { text-align: center; }
+    .palette video {
+      display: block; width: 100%; aspect-ratio: 600 / 1000; object-fit: cover; object-position: center 60%;
+      border-radius: 22px; border: 1px solid var(--border); background: #05060f;
     }
-    @media (max-width: 720px) {
-      .plus-inner { grid-template-columns: 1fr; gap: 48px; }
+    .palette h3 { font-size: 20px; margin: 18px 0 4px; }
+    .palette p { color: var(--muted); font-size: 15px; }
+    .more {
+      margin-top: 56px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center;
     }
-    .palette-row {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px;
-    }
-    .palette-chip {
-      height: 40px; width: 80px; border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
+    .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 100px;
+            background: var(--bg2); border: 1px solid var(--border); font-size: 14px; color: var(--muted); }
+    .chip i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
     .price-note {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px;
-      border-radius: 100px;
-      border: 1px solid rgba(160,112,216,0.3);
-      background: rgba(160,112,216,0.07);
-      color: var(--accent2);
-      font-size: 14px; font-weight: 600;
-      margin-top: 28px;
+      display: flex; justify-content: center; margin-top: 36px;
+      color: #d9c8ff; font-size: 15px; font-weight: 600;
     }
+
+    /* FREE */
+    .free { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: center; }
+    @media (max-width: 820px) { .free { grid-template-columns: 1fr; } .free .phone { order: -1; } }
+
+    /* CTA */
+    .cta { text-align: center; }
+    .cta .section-body { margin: 0 auto 36px; }
 
     /* FOOTER */
     footer {
@@ -241,20 +215,24 @@
       display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 20px;
     }
-    .footer-brand {
-      font-weight: 700; font-size: 16px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
+    .footer-brand { font-weight: 700; font-size: 16px; background: var(--glow);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
     .footer-links a { color: var(--muted); text-decoration: none; font-size: 14px; }
     .footer-links a:hover { color: var(--text); }
     .footer-copy { color: var(--muted); font-size: 13px; width: 100%; }
 
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; text-align: center; gap: 56px; padding-top: 110px; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+    }
     @media (max-width: 600px) {
       nav { padding: 14px 20px; }
       .nav-links { gap: 16px; }
       footer { padding: 32px 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
@@ -263,125 +241,124 @@
 <nav>
   <a href="/" class="nav-logo">Ondelu</a>
   <div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#plus">Plus</a>
+    <a href="#feel">Feel</a>
+    <a href="#plus">Palettes</a>
     <a href="/support">Support</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-badge">Coming soon to the App Store</span>
-  <h1>Fluid in<br>your hands</h1>
-  <p class="hero-sub">Ondelu simulates the mesmerizing physics of rheoscopic fluid — a shimmer that responds to your every touch and tilt.</p>
-  <div class="cta-group">
-    <span class="btn-appstore">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Coming soon
+  <div>
+    <span class="hero-badge">Coming soon to the App Store</span>
+    <h1>Fluid in <span class="glow">your hands</span></h1>
+    <p class="hero-sub">Ondelu is a living rheoscopic fluid for iPhone. Millions of tiny flakes turn with the flow and flash where they face the light. Stir it, tilt it — then watch it settle into stillness.</p>
+    <span class="btn-appstore" aria-disabled="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Coming soon on iPhone
     </span>
+    <p class="hero-note">Free with Graphite · Ondelu Plus unlocks nine more palettes</p>
   </div>
-
-  <div class="phone-wrap">
+  <div class="phone">
     <div class="phone-frame">
-      <div class="phone-screen">
-        <video autoplay muted loop playsinline>
-          <source src="ondelu-graphite-web.mp4" type="video/mp4">
-        </video>
-      </div>
+      <video autoplay muted loop playsinline poster="poster-neon.jpg" aria-label="Ondelu's Neon palette: cyan, violet and magenta streams swirling on a dark background">
+        <source src="ondelu-neon.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features" class="section">
-  <p class="section-label">How it works</p>
-  <h2 class="section-title">Real physics.<br>Real presence.</h2>
-  <p class="section-body">Ondelu runs a full fluid simulation on your GPU — the same mathematics that governs real liquids, executed 120 times per second.</p>
+<!-- FEEL -->
+<section id="feel" class="section">
+  <p class="section-label">How it feels</p>
+  <h2 class="section-title">Real physics.<br>Real stillness.</h2>
+  <p class="section-body">A full fluid simulation runs on your iPhone's GPU — the same mathematics that governs real liquids, 120 times per second. It isn't a video loop. Nothing ever repeats.</p>
 
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-icon">👆</div>
-      <h3>Touch-reactive</h3>
-      <p>Drag to stir. Tap for a radial ripple. The fluid responds to every gesture with physical momentum.</p>
+      <h3>Stir with your fingers</h3>
+      <p>Each finger drags the fluid like a glass rod. Up to five at once. A quick tap sends out a ripple.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">📱</div>
-      <h3>Motion-aware</h3>
-      <p>Tilt your phone and pigments shift under gravity. Lay it flat and the fluid settles into silence.</p>
+      <h3>Tilt to catch the light</h3>
+      <p>Turn the phone and the light swings across the flakes, so whole streams flash and fade — just like a bottle of real rheoscopic fluid.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">✨</div>
-      <h3>Rheoscopic shimmer</h3>
-      <p>Millions of microscopic flakes orient in the flow, catching light like real pearlescent ink.</p>
+      <h3>Real inertia</h3>
+      <p>Turn the phone and the fluid lags behind; stop and it runs on, like coffee in a cup. Small wobbles stay small.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">⚡️</div>
-      <h3>Metal-powered</h3>
-      <p>Five compute shader passes per frame. Navier-Stokes pressure solving at full display resolution.</p>
+      <h3>Settles into stillness</h3>
+      <p>Put it down and the fluid coasts to a stop, leaving a frozen picture of the last swirl. Thick or runny — you choose the viscosity.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">🔇</div>
-      <h3>Quietly alive</h3>
-      <p>When still, energy fades naturally. When you move, the fluid wakes up. No jarring transitions.</p>
+      <h3>Nothing in the way</h3>
+      <p>No account, no ads, no tracking, no notifications. The controls fade away; it's just the fluid and the glow of your screen.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">🌑</div>
-      <h3>Pure dark</h3>
-      <p>No UI chrome. No distractions. Just the fluid and the glow of your screen at night.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🔋</div>
-      <h3>GPU-honest</h3>
-      <p>The simulation runs on the graphics chip, not the CPU. Active use draws more power than a static screen — this is a living fluid, not an animation. Short sessions by design.</p>
+      <h3>Honest about power</h3>
+      <p>A living simulation uses the GPU and draws more battery than a still screen. Ondelu is made for short, calm moments.</p>
     </div>
   </div>
 </section>
 
 <!-- PLUS -->
-<div id="plus" class="plus-section">
-  <div class="plus-inner">
-    <div>
-      <p class="section-label">Ondelu Plus</p>
-      <h2 class="section-title">Seven more<br>dimensions of colour</h2>
-      <p class="section-body" style="margin-bottom:8px">Unlock handcrafted palettes — from silver pearl and liquid copper to iridescent slick that shifts between hues as the fluid moves.</p>
-      <div class="palette-row">
-        <div class="palette-chip" style="background: linear-gradient(135deg, #4d4f5e, #9ea1b0, #fffaf2)"></div>
-        <div class="palette-chip" style="background: linear-gradient(135deg, #170a06, #6a3d22, #ffcf8a)"></div>
-        <div class="palette-chip" style="background: linear-gradient(135deg, #010812, #0b3348, #99ffe9)"></div>
-        <div class="palette-chip" style="background: linear-gradient(135deg, #120b03, #725c2e, #ffee88)"></div>
-        <div class="palette-chip" style="background: linear-gradient(135deg, #0a0108, #7a2050, #ffdde8)"></div>
-        <div class="palette-chip" style="background: linear-gradient(135deg, #010106, #1a1a50, #99a0ff)"></div>
-        <div class="palette-chip" style="background: linear-gradient(135deg, #010102, #003, #00d8ff, #b314e6)"></div>
+<div id="plus" class="plus">
+  <section class="section">
+    <p class="section-label">Ondelu Plus</p>
+    <h2 class="section-title">Nine more palettes.<br>Each with its own world.</h2>
+    <p class="section-body">One purchase unlocks every colour — including three that bring their own backdrop.</p>
+
+    <div class="palettes">
+      <div class="palette">
+        <video autoplay muted loop playsinline poster="shot-neon.webp" aria-label="Neon palette"><source src="ondelu-neon.mp4" type="video/mp4"></video>
+        <h3>Neon</h3>
+        <p>Cyan, violet and magenta, burning out to ember — under a sky of glitter.</p>
       </div>
-      <div class="price-note">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-        One-time purchase · No subscription
+      <div class="palette">
+        <video autoplay muted loop playsinline poster="shot-aurora.webp" aria-label="Aurora palette"><source src="ondelu-aurora.mp4" type="video/mp4"></video>
+        <h3>Aurora</h3>
+        <p>Emerald and violet curtains of northern light, with a rose edge.</p>
       </div>
-    </div>
-    <div style="position:relative">
-      <div style="background: var(--bg2); border: 1px solid var(--border); border-radius: 24px; padding: 32px; text-align: center;">
-        <div style="font-size: 48px; margin-bottom: 16px;">🌈</div>
-        <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Iridescent palettes</h3>
-        <p style="color: var(--muted); font-size: 15px; line-height: 1.6">Slick — shifts between two vivid hues as the flake field evolves. Like oil on water, or a beetle's shell.</p>
-        <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border);">
-          <div style="color: var(--muted); font-size: 13px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .8px">Included in Plus</div>
-          <div style="display:flex; flex-direction:column; gap:8px; text-align:left">
-            <div style="font-size:15px">✦ Pearl · Copper · Lagoon</div>
-            <div style="font-size:15px">✦ Gold · Rose · Ink</div>
-            <div style="font-size:15px">✦ Slick</div>
-          </div>
-        </div>
+      <div class="palette">
+        <video autoplay muted loop playsinline poster="shot-magma.webp" aria-label="Magma palette"><source src="ondelu-magma.mp4" type="video/mp4"></video>
+        <h3>Magma</h3>
+        <p>Molten streams over a cracked, glowing crust that slowly sinks toward whatever way is down.</p>
       </div>
     </div>
-  </div>
+
+    <div class="more">
+      <span class="chip"><i style="background:linear-gradient(135deg,#4d4f5e,#fffaf2)"></i>Pearl</span>
+      <span class="chip"><i style="background:linear-gradient(135deg,#6a3d22,#ffcf8a)"></i>Copper</span>
+      <span class="chip"><i style="background:linear-gradient(135deg,#0b3348,#99ffe9)"></i>Lagoon</span>
+      <span class="chip"><i style="background:linear-gradient(135deg,#725c2e,#ffee88)"></i>Gold</span>
+      <span class="chip"><i style="background:linear-gradient(135deg,#7a2050,#ffdde8)"></i>Rose</span>
+      <span class="chip"><i style="background:linear-gradient(135deg,#1a1a50,#99a0ff)"></i>Ink</span>
+    </div>
+    <p class="price-note">One-time purchase · No subscription · Restores on all your devices</p>
+  </section>
 </div>
 
-<!-- CTA SECTION -->
-<section class="section" style="text-align:center; padding-top:80px; padding-bottom:80px">
-  <h2 class="section-title" style="margin:0 auto 20px">Coming soon.</h2>
-  <p class="section-body" style="margin:0 auto 40px">Graphite palette free. Ondelu Plus unlocks seven more colours.</p>
-  <span class="btn-appstore" style="margin:0 auto">
-    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+<!-- FREE -->
+<section class="section free">
+  <div class="phone">
+    <div class="phone-frame">
+      <video autoplay muted loop playsinline poster="shot-graphite.webp" aria-label="Graphite palette: silver streams on dark slate"><source src="ondelu-graphite.mp4" type="video/mp4"></video>
+    </div>
+  </div>
+  <div>
+    <p class="section-label">Free</p>
+    <h2 class="section-title">Graphite, on the house.</h2>
+    <p class="section-body" style="margin-bottom:0">The full simulation, touch and motion — free, in polished silver on dark slate. Every feature works without paying; Plus only adds colour.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta">
+  <h2 class="section-title">Coming soon.</h2>
+  <p class="section-body">Ondelu is on its way to the App Store for iPhone (iOS 17 or later).</p>
+  <span class="btn-appstore" aria-disabled="true">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.140-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.350-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
     Coming soon to the App Store
   </span>
 </section>
