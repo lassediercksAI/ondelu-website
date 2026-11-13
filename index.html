@@ -138,7 +138,7 @@
       background: linear-gradient(160deg, #2a2a35, #0d0d14 40%, #1d1d28);
       box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 40px 90px rgba(0,0,0,0.7);
     }
-    .phone-frame video, .phone-frame img {
+    .phone-frame img {
       display: block; width: 100%;
       aspect-ratio: 600 / 1304;
       object-fit: cover;
@@ -182,7 +182,7 @@
     }
     @media (max-width: 820px) { .palettes { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; } }
     .palette { text-align: center; }
-    .palette video {
+    .palette img {
       display: block; width: 100%; aspect-ratio: 600 / 1000; object-fit: cover; object-position: center 60%;
       border-radius: 22px; border: 1px solid var(--border); background: #05060f;
     }
@@ -261,9 +261,7 @@
   </div>
   <div class="phone">
     <div class="phone-frame">
-      <video autoplay muted loop playsinline poster="poster-neon.jpg" aria-label="Ondelu's Neon palette: cyan, violet and magenta streams swirling on a dark background">
-        <source src="ondelu-neon.mp4" type="video/mp4">
-      </video>
+      <img src="shot-neon.webp" alt="Ondelu's Neon palette: cyan, violet and magenta streams swirling on a dark background">
     </div>
   </div>
 </section>
@@ -311,17 +309,17 @@
 
     <div class="palettes">
       <div class="palette">
-        <video autoplay muted loop playsinline poster="shot-neon.webp" aria-label="Neon palette"><source src="ondelu-neon.mp4" type="video/mp4"></video>
+        <img src="shot-neon.webp" alt="Neon palette">
         <h3>Neon</h3>
         <p>Cyan, violet and magenta, burning out to ember — under a sky of glitter.</p>
       </div>
       <div class="palette">
-        <video autoplay muted loop playsinline poster="shot-aurora.webp" aria-label="Aurora palette"><source src="ondelu-aurora.mp4" type="video/mp4"></video>
+        <img src="shot-aurora.webp" alt="Aurora palette">
         <h3>Aurora</h3>
         <p>Emerald and violet curtains of northern light, with a rose edge.</p>
       </div>
       <div class="palette">
-        <video autoplay muted loop playsinline poster="shot-magma.webp" aria-label="Magma palette"><source src="ondelu-magma.mp4" type="video/mp4"></video>
+        <img src="shot-magma.webp" alt="Magma palette">
         <h3>Magma</h3>
         <p>Molten streams over a cracked, glowing crust that slowly sinks toward whatever way is down.</p>
       </div>
@@ -343,7 +341,7 @@
 <section class="section free">
   <div class="phone">
     <div class="phone-frame">
-      <video autoplay muted loop playsinline poster="shot-graphite.webp" aria-label="Graphite palette: silver streams on dark slate"><source src="ondelu-graphite.mp4" type="video/mp4"></video>
+      <img src="shot-graphite.webp" alt="Graphite palette: silver streams on dark slate">
     </div>
   </div>
   <div>
